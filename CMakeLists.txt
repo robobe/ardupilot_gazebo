@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.22)
 
 
 project(ardupilot_sitl_gazebo)
@@ -146,17 +146,15 @@ target_link_libraries(ArduCopterIRLockPlugin ${GAZEBO_LIBRARIES})
 add_library(ArduPilotPlugin SHARED src/ArduPilotPlugin.cc)
 target_link_libraries(ArduPilotPlugin ${GAZEBO_LIBRARIES})
 
-if("${GAZEBO_VERSION}" VERSION_LESS "8.0")
-    add_library(GimbalSmall2dPlugin SHARED src/GimbalSmall2dPlugin.cc)
-    target_link_libraries(GimbalSmall2dPlugin ${GAZEBO_LIBRARIES})
-    install(TARGETS GimbalSmall2dPlugin DESTINATION ${GAZEBO_PLUGIN_PATH})
-endif()
+  add_library(GimbalSmall3dPlugin SHARED src/GimbalSmall3dPlugin.cc)
+  target_link_libraries(GimbalSmall3dPlugin ${GAZEBO_LIBRARIES})
+  install(TARGETS GimbalSmall3dPlugin DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
-install(TARGETS ArduCopterIRLockPlugin DESTINATION ${GAZEBO_PLUGIN_PATH})
-install(TARGETS ArduPilotPlugin DESTINATION ${GAZEBO_PLUGIN_PATH})
+# install(TARGETS ArduCopterIRLockPlugin DESTINATION ${GAZEBO_PLUGIN_PATH})
+install(TARGETS ArduPilotPlugin DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
-install(DIRECTORY models DESTINATION ${GAZEBO_MODEL_PATH}/..)
-install(DIRECTORY worlds DESTINATION ${GAZEBO_MODEL_PATH}/..)
+# install(DIRECTORY models DESTINATION ${GAZEBO_MODEL_PATH}/..)
+# install(DIRECTORY worlds DESTINATION ${GAZEBO_MODEL_PATH}/..)
 
 # uninstall target
 if(NOT TARGET uninstall)

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake Configure",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["-B", "build", "-S", "."],
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "CMake Build",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "build", "--parallel"],
+      "dependsOn": "CMake Configure",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "CMake Install",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "build", "--target", "install"],
+      "dependsOn": "CMake Build",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Run listener",
+      "type": "shell",
+      "command": "./build/src/listener",
+      "dependsOn": "CMake Build",
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake Clean",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "rm -rf build && echo 'Build directory removed'"],
+      "problemMatcher": []
+    }
+  ]
+}

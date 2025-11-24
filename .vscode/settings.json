@@ -1,0 +1,10 @@
+{
+    "terminal.integrated.suggest.enabled": false,
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+          "path": "bash",
+          "icon": "terminal-bash",
+          "args": ["--rcfile", "${workspaceFolder}/env.sh"]
+      }
+  }
+}
