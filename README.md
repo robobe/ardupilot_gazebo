@@ -1,4 +1,4 @@
-# Ardupilot Gazebo plugin 
+# Ardupilot Gazebo classic plugin 
 
 ## Requirements :
 Native Ubuntu able to run full 3D graphics.
